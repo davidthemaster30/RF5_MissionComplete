@@ -12,7 +12,7 @@ namespace RF5_MissionComplete
 	{
 		static bool Prefix(ref bool __result)
 		{
-			if (!RF5WANTED.WantedData.isAccepted)
+			if (!RF5WANTED.WantedData.isAccepted || RF5WANTED.WantedData.isFinished || RF5WANTED.WantedData.Completed)
 				return true;
 
 			__result = true;

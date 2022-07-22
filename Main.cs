@@ -16,7 +16,7 @@ namespace RF5_MissionComplete
         #region PluginInfo
         private const string GUID = "27ACD694-6AF8-3FD3-BEC0-32D0FCA1F8BF";
         private const string NAME = "RF5_MissionComplete";
-        private const string VERSION = "1.1";
+        private const string VERSION = "1.1.1";
         private const string GAME_PROCESS = "Rune Factory 5.exe";
         #endregion
 
