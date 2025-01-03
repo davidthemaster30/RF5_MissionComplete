@@ -5,7 +5,7 @@
     <Description>RF5_MissionComplete</Description>
     <Product>RF5_MissionComplete</Product>
     <Company>https://github.com/davidthemaster30/RF5_MissionComplete</Company>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <RootNamespace>RF5_MissionComplete</RootNamespace>
