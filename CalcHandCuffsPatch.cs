@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
 
-namespace RF5_MissionComplete
+namespace RF5_MissionComplete;
+
+[HarmonyPatch(typeof(Calc.CalcHandCuffs), nameof(Calc.CalcHandCuffs.LotteryWantedMonster))]
+public class CalcHandCuffsPatch
 {
-	[HarmonyPatch(typeof(Calc.CalcHandCuffs), nameof(Calc.CalcHandCuffs.LotteryWantedMonster))]
-	public class CalcHandCuffsPatch
+	static bool Prefix(ref bool __result)
 	{
-		static bool Prefix(ref bool __result)
-		{
-			__result = true;
-			return false;
-		}
+		__result = true;
+		return false;
 	}
 }

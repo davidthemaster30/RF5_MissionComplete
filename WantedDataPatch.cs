@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
 
-namespace RF5_MissionComplete
+namespace RF5_MissionComplete;
+
+[HarmonyPatch(typeof(RF5WANTED.WantedData), nameof(RF5WANTED.WantedData.CheckMonster))]
+public class WantedDataPatch
 {
-	[HarmonyPatch(typeof(RF5WANTED.WantedData), nameof(RF5WANTED.WantedData.CheckMonster))]
-	public class WantedDataPatch
+	static bool Prefix(ref bool __result)
 	{
-		static bool Prefix(ref bool __result)
+		if (!RF5WANTED.WantedData.isAccepted || RF5WANTED.WantedData.isFinished || RF5WANTED.WantedData.Completed)
 		{
-			if (!RF5WANTED.WantedData.isAccepted || RF5WANTED.WantedData.isFinished || RF5WANTED.WantedData.Completed)
-				return true;
-
-			__result = true;
-			return false;
+			return true;
 		}
+
+		__result = true;
+		return false;
 	}
 }
