@@ -1,6 +1,20 @@
 rm -rf obj
 rm -rf bin
 
-dotnet build RF5_MissionComplete.csproj -f net6.0 -c Release
+CSPROJ_PATH="RF5_MissionComplete.csproj"
 
-zip -j 'RF5_MissionComplete_v1.2.1.zip' './bin/Release/net6.0/RF5_MissionComplete.dll'
+dotnet build $CSPROJ_PATH -f net6.0 -c Release
+
+VERSION=$(grep -oP '(?<=<Version>)[^<]+' "$CSPROJ_PATH" || true)
+PROJECTNAME=$(grep -oP '(?<=<AssemblyName>)[^<]+' "$CSPROJ_PATH" || true)
+ZIP_NAME="${PROJECTNAME}_v${VERSION}.zip"
+
+zip -j "${ZIP_NAME}" './bin/Release/net6.0/RF5_MissionComplete.dll'
+
+git tag "v${VERSION}"
+git push origin "v${VERSION}"
+ 
+gh release create "v${VERSION}" "${ZIP_NAME}" \
+  --title "v${VERSION}" \
+  --generate-notes
+  
